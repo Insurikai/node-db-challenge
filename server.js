@@ -30,15 +30,15 @@ server.get('/api/projects', (req, res) => {
   });
 });
 server.get('/api/tasks', async (req, res) => {
-  f = [];
   db('Tasks').then(tasks => {
-    tasks.forEach(async task => {
-      await db('Projects').where({id: task.ProjectID}).first().then(project => {
-        s = {...task, ProjectName: project.Name}
-        delete s.ProjectID
-        f.push(s)
-        console.log(f)
+    Promise.all(tasks.map(task => {
+      return db('Projects').where({id: task.ProjectID}).first().then(project => {
+        let o = {...task, ProjectName: project.Name,ProjectDesc: project.Desc, Completed: !!task.Completed}
+        delete o.ProjectID
+        return o
       })
+    })).then(result => {
+      res.status(200).send(result)
     })
   })
 });
@@ -50,7 +50,7 @@ server.post('/api/resources', (req, res) => {
       res.status(201).send('Success');
     })
     .catch(fail => {
-      res.status(201).send('Failure');
+      res.status(500).send('Failure');
     });
 });
 server.post('/api/projects', (req, res) => {
@@ -60,7 +60,7 @@ server.post('/api/projects', (req, res) => {
       res.status(201).send('Success');
     })
     .catch(fail => {
-      res.status(201).send('Failure');
+      res.status(500).send('Failure');
     });
 });
 server.post('/api/tasks', (req, res) => {
@@ -70,6 +70,6 @@ server.post('/api/tasks', (req, res) => {
       res.status(201).send('Success');
     })
     .catch(fail => {
-      res.status(201).send('Failure');
+      res.status(500).send('Failure');
     });
 });
