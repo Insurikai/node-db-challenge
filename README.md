@@ -39,13 +39,13 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
-
+  A Relational Database is a schema for how a database should be structured, while SQL is the language used to manage it
 - [ ] Why do tables need a `primary key`?
-
+  A primary key is an unchanging property used to identify a row, even when its other properties change
 - [ ] What is the name given to a table column that references the primary key on another table.
-
+  'Foreign Key'
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
-
+  You need an intermediary table
 ## Minimum Viable Product
 
 Take the steps necessary to complete the project from scratch. Start by initializing your project with a `package.json` and go from there.
@@ -55,11 +55,11 @@ Complete the following tasks:
 - [ ] Design the data model and use _knex migrations_ to create the database and tables.
 - [ ] Build an API with endpoints for:
   - [ ] adding resources.
-  - [ ] retrieving a list of resources.
+  X- [ ] retrieving a list of resources.
   - [ ] adding projects.
-  - [ ] retrieving a list of projects.
+  X- [ ] retrieving a list of projects.
   - [ ] adding tasks.
-  - [ ] retrieving a list of tasks. **The list of tasks should include the project name and project description**.
+  X- [ ] retrieving a list of tasks. **The list of tasks should include the project name and project description**.
 - [ ] When returning `project` or `task` information, the `completed` property should be `true` or `false`.
 
 For example, instead of returning a `task` that looks like this:
